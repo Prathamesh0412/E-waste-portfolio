@@ -287,7 +287,7 @@ const clientBuildPath = path.join(__dirname, '../dist');
 app.use(express.static(clientBuildPath));
 
 // Catch-all route to serve React's index.html for client-side routing
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(clientBuildPath, 'index.html'));
 });
 
