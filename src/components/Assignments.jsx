@@ -19,11 +19,23 @@ const Assignments = () => {
           const response = await fetch('/api/assignments');
           if (response.ok) {
             const data = await response.json();
+            
+            const safeParse = (str) => {
+              if (!str) return [];
+              if (Array.isArray(str)) return str;
+              if (typeof str === 'string') {
+                try { return JSON.parse(str); } 
+                catch(e) { return str.split(',').map(s => s.trim()).filter(Boolean); }
+              }
+              return [];
+            };
+
             const published = data.filter(a => a.status === 'published').map(a => ({
               ...a,
-              tags: typeof a.tags === 'string' ? JSON.parse(a.tags || '[]') : (a.tags || []),
-              learning_outcomes: typeof a.learning_outcomes === 'string' ? JSON.parse(a.learning_outcomes || '[]') : (a.learning_outcomes || [])
+              tags: safeParse(a.tags),
+              learning_outcomes: safeParse(a.learning_outcomes)
             }));
+            
             setAssignments(published);
             setLoading(false);
             return;

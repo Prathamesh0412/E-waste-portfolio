@@ -54,7 +54,7 @@ const AssignmentCard = ({ assignment, onClick }) => {
           {assignment.description}
         </p>
 
-        {assignment.tags && assignment.tags.length > 0 && (
+        {Array.isArray(assignment.tags) && assignment.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-4">
             {assignment.tags.slice(0, 3).map((tag, i) => (
               <span key={i} className="tag text-small px-2 py-0.5">{tag}</span>

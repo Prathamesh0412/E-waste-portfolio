@@ -5,6 +5,7 @@ import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react'
 const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
+  { label: 'Assignments', href: '#assignments' },
   {
     label: 'E-Waste',
     children: [
@@ -14,7 +15,6 @@ const navLinks = [
       { label: '5R Framework', href: '#framework' },
     ],
   },
-  { label: 'Assignments', href: '#assignments' },
   {
     label: 'Learning',
     children: [
